@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <div class="container-rh">
+        <div class="col s12 title-edit box-title-rh">
+            <h5>Gerar Lançamentos Créditos a Receber</h5>
+            <div class="divider grey title-divider"><p>1</p></div>
+        </div>
+        <div class="row">
+            {{ form_start(form) }}
+            <div class="col s6 field-filtro select-filtro">
+                {{ form_label(form.codEntidade, null, {'label_attr': {'class': 'control-label label-rh-select'}}) }}
+                {{ form_widget(form.codEntidade, {'attr': {'class': 'white input-rh-without-border browser-default'}}) }}
+                {{ form_errors(form.codEntidade) }}
+            </div>
+            <div class="col s12" style="margin-top: 20px">
+                <button type="submit" class="waves-effect waves-light btn blue darken-4 btn btn-success save right" name="btn_update_and_list"><i class="material-icons left">send</i>Avançar</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+Urbem\CoreBundle\Entity\SwCategoriaHabilitacao:
+    type: entity
+    table: sw_categoria_habilitacao
+    id:
+        codCategoria:
+            type: integer
+            generator:
+                strategy: NONE
+            column: cod_categoria
+    fields:
+        nomCategoria:
+            type: string
+            nullable: false
+            length: 15
+            column: nom_categoria
+    oneToMany:
+        fkSwCgaPessoaFisicas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCgaPessoaFisica
+            mappedBy: fkSwCategoriaHabilitacao
+        fkSwCgmPessoaFisicas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCgmPessoaFisica
+            mappedBy: fkSwCategoriaHabilitacao
+        fkSwCategoriaHabilitacaoVinculadas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCategoriaHabilitacaoVinculada
+            mappedBy: fkSwCategoriaHabilitacao
+        fkSwCategoriaHabilitacaoVinculadas1:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCategoriaHabilitacaoVinculada
+            mappedBy: fkSwCategoriaHabilitacao1
+        fkFrotaVeiculos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Frota\Veiculo
+            mappedBy: fkSwCategoriaHabilitacao

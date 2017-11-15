@@ -1,0 +1,147 @@
+Urbem\CoreBundle\Entity\SwMunicipio:
+    type: entity
+    table: sw_municipio
+    id:
+        codMunicipio:
+            type: integer
+            generator:
+                strategy: NONE
+            column: cod_municipio
+        codUf:
+            type: integer
+            generator:
+                strategy: NONE
+            column: cod_uf
+    fields:
+        nomMunicipio:
+            type: string
+            nullable: false
+            length: 35
+            column: nom_municipio
+    manyToOne:
+        fkSwUf:
+            targetEntity: Urbem\CoreBundle\Entity\SwUf
+            inversedBy: fkSwMunicipios
+            joinColumns:
+                cod_uf:
+                    referencedColumnName: cod_uf
+    oneToMany:
+        fkArrecadacaoServicoComRetencoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\ServicoComRetencao
+            mappedBy: fkSwMunicipio
+        fkArrecadacaoRetencaoNotas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\RetencaoNota
+            mappedBy: fkSwMunicipio
+        fkBeneficioItinerarios:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Beneficio\Itinerario
+            mappedBy: fkSwMunicipio
+        fkBeneficioItinerarios1:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Beneficio\Itinerario
+            mappedBy: fkSwMunicipio1
+        fkCseCidadoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Cse\Cidadao
+            mappedBy: fkSwMunicipio
+        fkCseDomicilios:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Cse\Domicilio
+            mappedBy: fkSwMunicipio
+        fkFiscalizacaoRetencaoNotas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Fiscalizacao\RetencaoNota
+            mappedBy: fkSwMunicipio
+        fkFiscalizacaoServicoComRetencoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Fiscalizacao\ServicoComRetencao
+            mappedBy: fkSwMunicipio
+        fkPessoalServidores:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Pessoal\Servidor
+            mappedBy: fkSwMunicipio
+        fkSwBairros:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwBairro
+            mappedBy: fkSwMunicipio
+        fkSwCgas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCga
+            mappedBy: fkSwMunicipio
+        fkSwCgas1:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCga
+            mappedBy: fkSwMunicipio1
+        fkSwLogradouros:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwLogradouro
+            mappedBy: fkSwMunicipio
+        fkDiariasDiarias:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Diarias\Diaria
+            mappedBy: fkSwMunicipio
+        fkSefazrsMunicipiosIptus:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Sefazrs\MunicipiosIptu
+            mappedBy: fkSwMunicipio
+        fkSwCgns:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCgm
+            mappedBy: fkSwMunicipio
+        fkSwCgns1:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCgm
+            mappedBy: fkSwMunicipio1

@@ -1,0 +1,47 @@
+sonata_core:
+   form:
+       mapping:
+           enabled: true
+           type:
+              prestacao_contas_entidade: Urbem\PrestacaoContasBundle\Form\Type\EntidadeType
+              prestacao_contas_exercicio_empenho: Urbem\PrestacaoContasBundle\Form\Type\ExercicioEmpenhoType
+              prestacao_contas_entidade_assinatura: Urbem\PrestacaoContasBundle\Form\Type\EntidadeAssinaturaType
+              prestacao_contas_entidade_rps: Urbem\PrestacaoContasBundle\Form\Type\EntidadeRpsType
+              prestacao_contas_recurso: Urbem\PrestacaoContasBundle\Form\Type\RecursoType
+              prestacao_contas_receita: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ReceitaType
+              prestacao_contas_ppa: Urbem\PrestacaoContasBundle\Form\Type\PpaType
+              prestacao_contas_ldo_tipo_indicadores: Urbem\PrestacaoContasBundle\Form\Type\LdoTipoIndicadoresType
+              prestacao_contas_date_picker: Urbem\PrestacaoContasBundle\Form\Type\DatePickerType
+              prestacao_contas_rs_contratos_liquidacao: Urbem\PrestacaoContasBundle\Service\Tribunal\RS\Form\ContratosLiquidacaoType
+              prestacao_contas_rs_parametros_arquivo_rd_extra: Urbem\PrestacaoContasBundle\Service\Tribunal\RS\Form\ParametrosArquivoRdExtraType
+              prestacao_contas_rs_parametros_arquivo_uniorcam: Urbem\PrestacaoContasBundle\Service\Tribunal\RS\Form\ParametrosArquivoUniorcamType
+              prestacao_contas_exercicio_uniorcam: Urbem\PrestacaoContasBundle\Service\Tribunal\RS\Form\ExercicioUniorcamType
+              prestacao_contas_rs_receita_carac_peculiar_receita: Urbem\PrestacaoContasBundle\Service\Tribunal\RS\Form\ExercicioReceitaCaracPeculiarReceitaType
+              prestacao_contas_rs_relacionamento_conta_entidade: Urbem\PrestacaoContasBundle\Service\Tribunal\RS\Form\RelacionamentoContaEntidadeType
+              prestacao_contas_mg_orgao: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoOrgaoType
+              prestacao_contas_norma: Urbem\PrestacaoContasBundle\Form\Type\NormaType
+              prestacao_contas_modalidade: Urbem\PrestacaoContasBundle\Form\Type\ModalidadeType
+              prestacao_contas_licitacao: Urbem\PrestacaoContasBundle\Form\Type\LicitacaoType
+              prestacao_contas_processo: Urbem\PrestacaoContasBundle\Form\Type\ProcessoType
+              prestacao_contas_mapa_compras: Urbem\PrestacaoContasBundle\Form\Type\MapaComprasType
+              prestacao_contas_periodicidade: Urbem\PrestacaoContasBundle\Form\Type\PeriodicidadeType
+              prestacao_contas_tipo_licitacao: Urbem\PrestacaoContasBundle\Form\Type\TipoLicitacaoType
+              prestacao_contas_criterio_julgamento: Urbem\PrestacaoContasBundle\Form\Type\CriterioJulgamentoType
+              prestacao_contas_tipo_objeto: Urbem\PrestacaoContasBundle\Form\Type\TipoObjetoType
+              prestacao_contas_objeto: Urbem\PrestacaoContasBundle\Form\Type\ObjetoType
+              prestacao_contas_sw_cgm_pessoa_fisica: Urbem\PrestacaoContasBundle\Form\Type\SwCgmPessoaFisicaType
+              prestacao_contas_sw_cgm: Urbem\PrestacaoContasBundle\Form\Type\SwCgmType
+              prestacao_contas_mg_gestao_fiscal_medidas: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoGestaoFiscalMedidasType
+              prestacao_contas_mg_rec_desc_extra: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoRecDescExtraType
+              prestacao_contas_norma_reg_artigo: Urbem\PrestacaoContasBundle\Form\Type\NormaRegArtigoType
+              prestacao_contas_mg_ddc_filter: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoDDCFilterType
+              prestacao_contas_grupo_contas:  Urbem\PrestacaoContasBundle\Form\Type\GrupoContasType
+              prestacao_contas_mg_nota_fiscal_filter: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoNotaFiscalFilterType
+              prestacao_contas_mg_teto_remuneratorio_filter: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfigurarTetoRemuneratorioFilterType
+              prestacao_contas_folha_pagamento_evento: Urbem\PrestacaoContasBundle\Form\Type\FolhaPagamentoEventoType
+              prestacao_contas_orgao: Urbem\PrestacaoContasBundle\Form\Type\OrgaoType
+              prestacao_contas_mg_convenio_filter: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoConvenioFilterType
+              prestacao_contas_mg_convenio_filter: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoConvenioFilterType
+              prestacao_contas_mg_projecao_atuarial: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoProjecaoAtuarialType
+              prestacao_contas_mg_configuracao_fornecedor_software: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoFornecedorSoftwareType
+              prestacao_contas_mg_contrato_filter: Urbem\PrestacaoContasBundle\Service\Tribunal\MG\Form\ConfiguracaoContratoFilterType

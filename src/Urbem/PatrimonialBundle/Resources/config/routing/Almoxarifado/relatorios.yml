@@ -1,0 +1,4 @@
+patrimonio_almoxarifado_relatorios_home:
+    path:     /
+    defaults: { _controller: "PatrimonialBundle:Almoxarifado/Relatorios:home" }
+    methods:  GET

@@ -1,0 +1,433 @@
+Urbem\CoreBundle\Entity\Administracao\Usuario:
+    type: entity
+    table: administracao.usuario
+    id:
+        numcgm:
+            type: integer
+            generator:
+                strategy: SEQUENCE
+            sequenceGenerator:
+                sequenceName: administracao.usuario_numcgm_seq
+                allocationSize: 1
+                initialValue: 1
+    fields:
+        id:
+            type: integer
+            nullable: false
+        codOrgao:
+            type: integer
+            nullable: false
+            column: cod_orgao
+        dtCadastro:
+            type: date
+            nullable: false
+            column: dt_cadastro
+        profilePicture:
+            type: string
+            nullable: true
+            length: 255
+            column: profile_picture
+        status:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                default: I
+    manyToOne:
+        fkOrganogramaOrgao:
+            targetEntity: Urbem\CoreBundle\Entity\Organograma\Orgao
+            inversedBy: fkAdministracaoUsuarios
+            joinColumns:
+                cod_orgao:
+                    referencedColumnName: cod_orgao
+    oneToMany:
+        fkAdministracaoGrupoUsuarios:
+          cascade:
+              - persist
+              - remove
+          orphanRemoval: true
+          targetEntity: Urbem\CoreBundle\Entity\Administracao\GrupoUsuario
+          mappedBy: fkAdministracaoUsuario
+        fkAdministracaoAuditorias:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\Auditoria
+            mappedBy: fkAdministracaoUsuario
+        fkAdministracaoComunicados:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\Comunicado
+            mappedBy: fkAdministracaoUsuario
+        fkAdministracaoDepartamentos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\Departamento
+            mappedBy: fkAdministracaoUsuario
+        fkAdministracaoModulos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\Modulo
+            mappedBy: fkAdministracaoUsuario
+        fkAdministracaoLocais:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\Local
+            mappedBy: fkAdministracaoUsuario
+        fkAdministracaoSetores:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\Setor
+            mappedBy: fkAdministracaoUsuario
+        fkAdministracaoUnidades:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\Unidade
+            mappedBy: fkAdministracaoUsuario
+        fkAlmoxarifadoNaturezaLancamentos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Almoxarifado\NaturezaLancamento
+            mappedBy: fkAdministracaoUsuario
+        fkAlmoxarifadoRequisicaoHomologadas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Almoxarifado\RequisicaoHomologada
+            mappedBy: fkAdministracaoUsuario
+        fkArrecadacaoCompensacoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\Compensacao
+            mappedBy: fkAdministracaoUsuario
+        fkArrecadacaoDocumentoEmissoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\DocumentoEmissao
+            mappedBy: fkAdministracaoUsuario
+        fkArrecadacaoNotaAvulsas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\NotaAvulsa
+            mappedBy: fkAdministracaoUsuario
+        fkArrecadacaoPagamentos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\Pagamento
+            mappedBy: fkAdministracaoUsuario
+        fkArrecadacaoNotaAvulsaCanceladas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\NotaAvulsaCancelada
+            mappedBy: fkAdministracaoUsuario
+        fkArrecadacaoPermissoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\Permissao
+            mappedBy: fkAdministracaoUsuario
+        fkComprasSolicitacaoHomologadas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Compras\SolicitacaoHomologada
+            mappedBy: fkAdministracaoUsuario
+        fkComprasSolicitacaoHomologadaAnulacoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Compras\SolicitacaoHomologadaAnulacao
+            mappedBy: fkAdministracaoUsuario
+        fkComprasSolicitacoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Compras\Solicitacao
+            mappedBy: fkAdministracaoUsuario
+        fkDividaDividaAtivas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Divida\DividaAtiva
+            mappedBy: fkAdministracaoUsuario
+        fkDividaDividaEstornos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Divida\DividaEstorno
+            mappedBy: fkAdministracaoUsuario
+        fkDividaCobrancaJudiciais:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Divida\CobrancaJudicial
+            mappedBy: fkAdministracaoUsuario
+        fkDividaDividaRemissoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Divida\DividaRemissao
+            mappedBy: fkAdministracaoUsuario
+        fkDividaDividaCanceladas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Divida\DividaCancelada
+            mappedBy: fkAdministracaoUsuario
+        fkDividaEmissaoDocumentos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Divida\EmissaoDocumento
+            mappedBy: fkAdministracaoUsuario
+        fkEmpenhoPermissaoAutorizacoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Empenho\PermissaoAutorizacao
+            mappedBy: fkAdministracaoUsuario
+        fkEmpenhoPreEmpenhos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Empenho\PreEmpenho
+            mappedBy: fkAdministracaoUsuario
+        fkSwUltimoAndamentos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwUltimoAndamento
+            mappedBy: fkAdministracaoUsuario
+        fkFiscalizacaoProcessoFiscais:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Fiscalizacao\ProcessoFiscal
+            mappedBy: fkAdministracaoUsuario
+        fkFiscalizacaoProcessoFiscalCancelados:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Fiscalizacao\ProcessoFiscalCancelado
+            mappedBy: fkAdministracaoUsuario
+        fkFolhapagamentoReajustes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Folhapagamento\Reajuste
+            mappedBy: fkAdministracaoUsuario
+        fkFolhapagamentoReajusteExclusoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Folhapagamento\ReajusteExclusao
+            mappedBy: fkAdministracaoUsuario
+        fkImobiliarioEmissaoDocumentos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Imobiliario\EmissaoDocumento
+            mappedBy: fkAdministracaoUsuario
+        fkOrcamentoUsuarioEntidades:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Orcamento\UsuarioEntidade
+            mappedBy: fkAdministracaoUsuario
+        fkPatrimonioInventarios:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Patrimonio\Inventario
+            mappedBy: fkAdministracaoUsuario
+        fkPontoCompensacaoHorasExclusoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Ponto\CompensacaoHorasExclusao
+            mappedBy: fkAdministracaoUsuario
+        fkPontoConfiguracaoRelogioPontoExclusoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Ponto\ConfiguracaoRelogioPontoExclusao
+            mappedBy: fkAdministracaoUsuario
+        fkPontoEscalaContratoExclusoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Ponto\EscalaContratoExclusao
+            mappedBy: fkAdministracaoUsuario
+        fkSwAndamentos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwAndamento
+            mappedBy: fkAdministracaoUsuario
+        fkSwAssinaturaDigitais:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwAssinaturaDigital
+            mappedBy: fkAdministracaoUsuario
+        fkSwCgas:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCga
+            mappedBy: fkAdministracaoUsuario
+        fkSwCgas1:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwCga
+            mappedBy: fkAdministracaoUsuario1
+        fkSwDespachos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwDespacho
+            mappedBy: fkAdministracaoUsuario
+        fkSwPermissaoAutorizacoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwPermissaoAutorizacao
+            mappedBy: fkAdministracaoUsuario
+        fkSwPreEmpenhos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwPreEmpenho
+            mappedBy: fkAdministracaoUsuario
+        fkAdministracaoPermissoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\Permissao
+            mappedBy: fkAdministracaoUsuario
+        fkSwProcessos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\SwProcesso
+            mappedBy: fkAdministracaoUsuario
+        fkDiariasDiarias:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Diarias\Diaria
+            mappedBy: fkAdministracaoUsuario
+        fkAlmoxarifadoRequisicoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Almoxarifado\Requisicao
+            mappedBy: fkAdministracaoUsuario
+        fkArrecadacaoLotes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Arrecadacao\Lote
+            mappedBy: fkAdministracaoUsuario
+        fkAdministracaoUsuarioImpressoras:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Administracao\UsuarioImpressora
+            mappedBy: fkAdministracaoUsuario
+        fkDividaParcelamentos:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Divida\Parcelamento
+            mappedBy: fkAdministracaoUsuario
+        fkImobiliarioPermissoes:
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+            targetEntity: Urbem\CoreBundle\Entity\Imobiliario\Permissao
+            mappedBy: fkAdministracaoUsuario
+    oneToOne:
+        fkAlmoxarifadoAlmoxarife:
+            cascade:
+                - persist
+                - remove
+            targetEntity: Urbem\CoreBundle\Entity\Almoxarifado\Almoxarife
+            inversedBy: fkAdministracaoUsuario
+            joinColumns:
+                numcgm:
+                    referencedColumnName: cgm_almoxarife
+        fkSwCgm:
+            targetEntity: Urbem\CoreBundle\Entity\SwCgm
+            inversedBy: fkAdministracaoUsuario
+            joinColumns:
+                numcgm:
+                    referencedColumnName: numcgm
+    lifecycleCallbacks:
+        prePersist:
+            - generateID

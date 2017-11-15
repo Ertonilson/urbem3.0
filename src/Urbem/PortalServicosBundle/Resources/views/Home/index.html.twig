@@ -1,0 +1,683 @@
+{% extends 'base_home_cards.html.twig' %}
+
+{% block title %}
+    Portal do Cidadão
+{% endblock title %}
+
+{% block content %}
+    <link rel="stylesheet" href="/bundles/core/css/sonata-urbem.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://maxartkiller.in/website/rockon/rockon_blue/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="http://maxartkiller.in/website/rockon/rockon_blue/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="http://maxartkiller.in/website/rockon/rockon_blue/vendor/jquery-jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="http://maxartkiller.in/website/rockon/rockon_blue/css/material_color_rockon.css"/>
+
+    <style type="text/css">
+        .dashboard_content {
+            padding: 20px !important;
+        }
+
+        .dashboard_content .icons-color {
+            color: #366DA1 !important;
+        }
+
+        .dashboard_content .card .card-content {
+            padding: 20px !important;
+            border-radius: 0 0 2px 2px !important;
+        }
+
+        .dashboard_content .home_cards_icon {
+            margin-top: 0px !important;
+            font-size: 30px !important;
+        }
+
+        .dashboard_content .blockcolored .card .card-content .card-title {
+            line-height: 34px !important;
+            margin-top: 10px !important;
+            font-weight: 500 !important;
+            font-size: 34px !important;
+        }
+
+        .dashboard_content .card .card-content p {
+            line-height: 20px;
+            margin: 10px 0 0 0;
+        }
+
+        .dashboard_content .card .card-reveal {
+            padding: 20px !important;
+            position: absolute;
+            background-color: #fff !important;
+            width: 100%;
+            overflow-y: auto !important;
+            left: 0;
+            top: 100%;
+            height: 100%;
+            z-index: 3;
+            display: none;
+        }
+
+        .dashboard_content .card .card-title {
+            font-size: 24px;
+            color: #366DA1 !important;
+            font-weight: 300;
+        }
+
+        .dashboard_content p {
+            color: #333;
+            font-size: 14px;
+            line-height: 20px;
+            display: block;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+        }
+
+        .dashboard_content .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .dashboard_content p.large {
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        .dashboard_content p.large i {
+            vertical-align: middle;
+        }
+
+        .dashboard_content .waves-block {
+            display: block;
+        }
+
+        /* Notifications Panel */
+        .dashboard_content .panel-body {
+            padding: 15px;
+        }
+
+        /* Morris Chart Panel */
+        .dashboard_content .morris-hover.morris-default-style {
+            padding: 6px;
+            color: #222222;
+            background: rgb(255, 255, 255);
+            border: solid 2px rgba(230, 230, 230, 0);
+            font-size: 12px;
+            text-align: center;
+            line-height: 14px;
+            border-radius: 3px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard_content .morris-hover.morris-default-style {
+            border-radius: 10px;
+            padding: 6px;
+            color: #666;
+            background: rgba(255, 255, 255, 0.8);
+            border: solid 2px rgba(230, 230, 230, 0.8);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .dashboard_content .morris-hover {
+            position: absolute;
+            z-index: 1000;
+        }
+
+        /* Last News Panel */
+        .dashboard_content .list-group.data-ultimas-noticias *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        .dashboard_content .list-group.data-ultimas-noticias section.outras_noticias {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            overflow-y: auto;
+            max-height: 440px;
+        }
+
+        .dashboard_content .list-group.data-ultimas-noticias div.item_noticia {
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 25%;
+        }
+
+        .dashboard_content .list-group.data-ultimas-noticias nav.compartilheListaNoticia {
+            display: none;
+        }
+
+        /* Card image */
+        .dashboard_content .card .card-image {
+            position: relative;
+            width: 100%;
+        }
+
+        .dashboard_content .card .card-image img {
+            width: 195px;
+            height: 117px;
+        }
+
+        .dashboard_content .card .card-image figure {
+            width: 195px;
+            height: 117px;
+            margin: 0px;
+        }
+
+        .dashboard_content img.img-profile {
+            display: inline-block;
+            width: auto !important;
+            height: 185px !important;
+            margin-top: 20px;
+        }
+
+        .dashboard_content .profile-name {
+            font-size: 15pt;
+            color: #3b6d9c;
+        }
+
+        .dashboard_content img.img-offline {
+            border: 2px solid #ccc;
+            padding: 2px;
+            background-color: #fff;
+        }
+
+        .dashboard_content img.img-circle {
+            border-radius: 20%;
+        }
+
+        .dashboard_content #chart-meus-imoveis {
+            width: auto;
+            height: 300px;
+            background-size: 75% !important;
+        }
+
+        .dashboard_content #chart-meus-imoveis img {
+            width: auto !important;
+            height: 90px !important;
+            margin: auto;
+            top: 110px;
+        }
+
+        .dashboard_content #chart-inscricao-economica {
+            width: auto;
+            height: 300px;
+            background-size: 75% !important;
+        }
+
+        .dashboard_content #chart-inscricao-economica img {
+            width: auto !important;
+            height: 70px !important;
+            margin: auto;
+            top: 120px;
+        }
+
+        .dashboard_content #chart-divida-ativa {
+            width: auto;
+            height: 300px;
+            background-size: 75% !important;
+        }
+
+        .dashboard_content #chart-divida-ativa img {
+            width: auto !important;
+            height: 70px !important;
+            margin: auto;
+            top: 120px;
+        }
+
+        .dashboard_content #chart-arrecadacao-iptu {
+            width: auto;
+            height: 300px;
+            background-size: 75% !important;
+        }
+
+        .dashboard_content #chart-arrecadacao-iptu img {
+            width: auto !important;
+            height: 70px !important;
+            margin: auto;
+            top: 120px;
+        }
+
+        .dashboard_content #chart-arrecadacao-iss {
+            width: auto;
+            height: 300px;
+            background-size: 75% !important;
+        }
+
+        .dashboard_content #chart-arrecadacao-iss img {
+            width: auto !important;
+            height: 70px !important;
+            margin: auto;
+            top: 120px;
+        }
+
+        .dashboard_content #transparencia {
+            width: auto;
+            height: 300px;
+            background-size: 75% !important;
+        }
+
+        .dashboard_content .mr20 {
+            margin-right: 20px !important;
+        }
+
+        .dashboard_content .tinystat {
+            display: inline-block;
+        }
+
+        .dashboard_content .tinystat .chart {
+            margin-right: 5px;
+        }
+
+        .dashboard_content .tinystat .chart, .dashboard_content .tinystat .datainfo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .dashboard_content .mt5 {
+            margin-top: 5px !important;
+        }
+
+        .dashboard_content .tinystat .chart, .dashboard_content .tinystat .datainfo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .dashboard_content .tinystat .text-muted {
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+
+        .dashboard_content .text-muted {
+            color: #777;
+        }
+
+        .dashboard_content .tinystat h4 {
+            margin: 0;
+            color: #333;
+            font-weight: bold;
+            line-height: normal;
+            font-size: 16px;
+        }
+
+        .dashboard_content .img-dashboard-calendario {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .dashboard_content .img-dashboard-noticias {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .dashboard_content .card-reveal table tbody td span {
+            vertical-align: super;
+        }
+
+        .jqstooltip .jqsfield {
+            margin-right: 12px !important;
+            margin-bottom: 12px !important;
+            font-size: 10pt !important;
+        }
+
+        /* FullCalendar */
+        .dashboard_content .fc-state-highlight {
+            background-color: #d9edf7;
+        }
+
+        /* dataTables Panels */
+        .dashboard_content #tableListCargos_wrapper div.dataTables_scrollHeadInner,
+        .dashboard_content #tableListCargos_wrapper .dataTables_scrollHeadInner table {
+            width: 100% !important;
+        }
+
+        .dashboard_content #tableListCargos_wrapper div.dataTables_scrollBody {
+            max-height: 280px !important;
+        }
+
+        .dashboard_content #tableListCargos_wrapper div#tableListCargos_info.dataTables_info {
+            width: 350px !important;
+        }
+
+        .dashboard_content #tableListUniorcam_wrapper div.dataTables_scrollHeadInner,
+        .dashboard_content #tableListUniorcam_wrapper .dataTables_scrollHeadInner table {
+            width: 100% !important;
+        }
+
+        .dashboard_content #tableListUniorcam_wrapper div.dataTables_scrollBody {
+            max-height: 180px !important;
+        }
+
+        .dashboard_content #tableListUniorcam_wrapper div#tableListCargos_info.dataTables_info {
+            width: 350px !important;
+        }
+
+        /* Balon over chart */
+        .dashboard_content #morrisdetails-item.morris-hover.morris-default-style {
+            position: static !important;
+            bottom: 0px;
+            right: 0px;
+            margin: 13px;
+            float: none !important;
+        }
+
+        /* Custom scrollbar */
+        div::-webkit-scrollbar-track,
+        section::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 3px rgba(90, 90, 90, 0.0);
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.01);
+        }
+
+        div::-webkit-scrollbar,
+        section::-webkit-scrollbar {
+            width: 6px;
+            background-color: transparent;
+        }
+
+        div::-webkit-scrollbar-thumb,
+        section::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 0 0 6px rgba(90, 90, 90, 0.0);
+            border-radius: 5px;
+            background-color: #ccc;
+        }
+    </style>
+
+    <div class="container white z-depth-1 form reports">
+
+        <h4 class="blue-text text-darken-4">
+            Módulo Portal do Cidadão
+        </h4>
+
+        <div class="row dashboard_content">
+            <div class="col s12 m6 l4">
+                <div class="card">
+
+                    <div class="card-image waves-effect waves-block waves-light text-center">
+                        <img src="{% if usuario.profilePicture is not null %} {{ profilePictureDir ~ usuario.profilePicture }} {% else %} {{ asset('/bundles/portalservicos/images/user.png') }} {% endif %}" class="img-circle img-offline img-responsive img-profile" alt="">
+                        <p class="profile-name">{{ usuario.getFkSwCgm().getNomCgm() }}</p>
+                        <p><i class="fa fa-calendar"></i> Último acesso: <a href="javascript:">{{ usuario.getLastLogin().format('\\D\\i\\a d/m/Y \\à\\s H:i') }}</a></p>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Meu Perfil
+                            <i class="material-icons right">more_vert</i>
+                        </span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Detalhes<i class="material-icons right">close</i></span>
+                        <table class="bordered ">
+                            <thead>
+                            <tr>
+                                <th colspan="2">Dados Acesso</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Username:</td>
+                                <td>{{ usuario.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>E-mail:</td>
+                                <td>{{ usuario.email }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="bordered ">
+                            <thead>
+                            <tr>
+                                <th>Endereço</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><i class="fa fa-map-marker"></i> {{ usuario.fkSwCgm.logradouro|title }} N.º{{ usuario.fkSwCgm.numero }}, {{  usuario.fkSwCgm.bairro|title }} <br>{{  usuario.fkSwCgm.fkSwMunicipio.nomMunicipio }} - {{  usuario.fkSwCgm.fkSwMunicipio.fkSwUf.siglaUf }} - {{ usuario.fkSwCgm.fkSwMunicipio.fkSwUf.fkSwPais.nomPais }}- CEP {{ usuario.fkSwCgm.cep|slice(0,5) ~ '-' ~ usuario.fkSwCgm.cep|slice(5) }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="row">
+                            <div class="col"><a href="{{ path('urbem_portalservicos_usuario_edit', {'id': usuario.numcgm}) }}"><i class="fa fa-edit"></i> Alterar Informações</a></div>
+                            <div class="col"><a href="{{ path('urbem_portalservicos_usuario_change_password', {'id': usuario.numcgm}) }}"><i class="fa fa-key"></i> Alterar Senha</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="{{ path('urbem_portalservicos_consulta_imovel_list') }}">
+                            <div id="chart-meus-imoveis">
+                                <img src="{{ asset('/bundles/portalservicos/images/home.png') }}" alt="" style="display:none">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Meus Imóveis
+                            <i class="material-icons right">more_vert</i>
+                        </span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Detalhes<i class="material-icons right">close</i></span>
+                        <table class="bordered js-table-lista-imoveis">
+                            <thead>
+                                <tr>
+                                    <th>Número da Inscrição</th>
+                                    <th>Situação</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="{{ path('urbem_portalservicos_cadastro_economico_consulta_list') }}">
+                            <div id="chart-inscricao-economica">
+                                <img src="{{ asset('/bundles/portalservicos/images/percent.png') }}" alt="" style="display:none">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Inscrição Econômica
+                            <i class="material-icons right">more_vert</i>
+                        </span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Detalhes<i class="material-icons right">close</i></span>
+                        <table class="bordered js-table-lista-cadastro-economico">
+                            <thead>
+                                <tr>
+                                    <th>Número da Inscrição</th>
+                                    <th>Situação</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="{{ path('urbem_portalservicos_arrecadacao_consulta_iptu_list') }}">
+                            <div id="chart-divida-ativa">
+                                <img src="{{ asset('/bundles/portalservicos/images/handmoney.png') }}" alt="" style="display:none">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Dívida Ativa
+                            <i class="material-icons right">more_vert</i>
+                        </span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Detalhes<i class="material-icons right">close</i></span>
+                        <table class="bordered js-table-lista-inscricao-divida-ativa">
+                            <thead>
+                                <tr>
+                                    <th>Número da Inscrição</th>
+                                    <th>Situação</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="{{ path('urbem_portalservicos_arrecadacao_consulta_iptu_list') }}">
+                            <div id="chart-arrecadacao-iptu">
+                                <img src="{{ asset('/bundles/portalservicos/images/handmoney.png') }}" alt="" style="display:none">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Arrecadação - IPTU
+                            <i class="material-icons right">more_vert</i>
+                        </span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Detalhes<i class="material-icons right">close</i></span>
+                        <table class="bordered js-table-lista-arrecadacao-iptu">
+                            <thead>
+                                <tr>
+                                    <th>Número da Inscrição</th>
+                                    <th>Situação</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="{{ path('urbem_portalservicos_arrecadacao_consulta_iss_list') }}">
+                            <div id="chart-arrecadacao-iss">
+                                <img src="{{ asset('/bundles/portalservicos/images/handmoney.png') }}" alt="" style="display:none">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Arrecadação - ISS
+                            <i class="material-icons right">more_vert</i>
+                        </span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Detalhes<i class="material-icons right">close</i></span>
+                        <table class="bordered js-table-lista-arrecadacao-iss">
+                            <thead>
+                                <tr>
+                                    <th>Número da Inscrição</th>
+                                    <th>Situação</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <a href="/transparencia">
+                            <div id="transparencia">
+                                <img src="{{ asset('/bundles/prestacaocontas/images/annual.png') }}" style="width:100% !important;height:auto !important;padding-top:20px">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            Portal da Transparência
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row dashboard_content">
+            <div class="col s12 m12 l12 sr-only">
+                <h4>Analytic Data</h4>
+            </div>
+
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4 ">Últimas notícias CNM</span>
+                    </div>
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <div class="panel-body">
+                            <div class="list-group data-ultimas-noticias scrollbar">
+                                {{ ultimasNoticiasCNM | raw }}
+                            </div>
+                            <div class="card-content">
+                                <span class="grey-text text-lighten-1 ">Fonte: CNM - Informações obtidas direto do portal da CNM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DataTables JavaScript -->
+    <script src="http://maxartkiller.in/website/rockon/rockon_blue/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="http://maxartkiller.in/website/rockon/rockon_blue/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="http://maxartkiller.in/website/rockon/rockon_blue/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!--sparklines js-->
+    <script type="text/javascript" src="http://maxartkiller.in/website/rockon/rockon_blue/vendor/sparklines/jquery.sparkline.min.js"></script>
+
+    <!--Custome js-->
+    <script type="text/javascript" src="http://maxartkiller.in/website/rockon/rockon_blue/js/rockon.js"></script>
+
+    <!-- Init js -->
+    <script>
+        /***** Sparkline Charts *****/
+        jQuery('.sparkline1').sparkline([6, 5, 7, 5, 7, 6, 7, 5, 6, 6, 7, 5], {
+            type: 'bar',
+            height: '30px',
+            barColor: '#00aa00'
+        });
+
+        jQuery('.sparkline2').sparkline([5, 6, 7, 7, 6, 5, 6, 5, 6, 6, 7, 6], {
+            type: 'bar',
+            height: '30px',
+            barColor: '#aa0000'
+        });
+    </script>
+
+    <script type="text/javascript" src="{{ asset('/bundles/portalservicos/javascripts/home.js') }}"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="http://maxartkiller.in/website/rockon/rockon_blue/vendor/raphael/raphael.js"></script>
+    <script src="http://maxartkiller.in/website/rockon/rockon_blue/vendor/morrisjs/morris.min.js"></script>
+    {#<script src="http://maxartkiller.in/website/rockon/rockon_blue/vendor/morrisjs/morris-data.js"></script>#}
+
+    <!--Custome js-->
+    <script type="text/javascript" src="http://maxartkiller.in/website/rockon/rockon_blue/js/rockon.js"></script>
+{% endblock %}
